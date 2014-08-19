@@ -3,7 +3,7 @@ class WordsController < ApplicationController
 		  add_breadcrumb "home", :root_path
   	def find_words
   		@words= Word.all
-		@words_found = @words.where "name LIKE ?", "%#{params[:name].capitalize}%"
+		@words_found = @words.where "name LIKE ?", "%#{params[:name].downcase}%"
 		if @words_found.empty?
 			flash[:alert] = 'We could not find it all...'
 			@alphabet = ("a".."z").to_a
@@ -32,7 +32,7 @@ class WordsController < ApplicationController
 
 	def create
 		@word = Word.new entry_params
-
+		@word.name = params[:word][:name].downcase
 		if @word.save
 			redirect_to action: 'index', controller:'words'
 		else
