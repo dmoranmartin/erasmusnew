@@ -14,6 +14,19 @@ class WordsController < ApplicationController
 		end	
 	end
 
+	def find_language
+  		@words= Word.all
+		@words_language = @words.where "language LIKE ?", "%#{params[:language]}%"
+		if @words_language.empty?
+			flash[:alert] = 'We could not find it all...'
+			@alphabet = ("a".."z").to_a
+			redirect_to words_path
+			
+		else 
+			render 'find_language'
+		end	
+	end
+
 	def index
 		@words = Word.order(name: :asc)
 		@words_name = @words.map(&:name)
@@ -75,3 +88,4 @@ class WordsController < ApplicationController
 	end
 
 end
+

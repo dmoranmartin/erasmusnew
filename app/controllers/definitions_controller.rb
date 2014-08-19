@@ -3,10 +3,8 @@ class DefinitionsController < ApplicationController
 		add_breadcrumb "words", :words_path
 	def index
 		add_breadcrumb "definitions", word_definitions_path
-
 		@word = Word.find params[:word_id]
 		@definitions = @word.definitions.all
-		@alphabet = ("a".."z").to_a
 	end
 	def new
 		add_breadcrumb "new", new_word_definition_path

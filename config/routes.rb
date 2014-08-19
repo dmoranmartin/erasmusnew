@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  post 'words/find' => 'words#find_words'
+  get 'words/language' => 'words#find_language'
   devise_for :users
   resources :words do
     resources :definitions
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'site#index'
-  post 'words/find' => 'words#find_words'
+ 
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,6 +1,6 @@
 	<ul>
 					
-		<% @words_found.each do |word| %>
+		<% @words_category.each do |word| %>
 		<li><%= (link_to word.name, word_definitions_path(word.id)) %></li>
 		<% end %>
 					

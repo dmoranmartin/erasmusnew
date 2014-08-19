@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Erasmus</title>
+  <title>Erasmus </title>
   <%= include_gon %>
   <%= stylesheet_link_tag    'application', media: 'all'%>
 
@@ -25,8 +25,8 @@
       <div id="logo_finder">
       <table id="headache"> <tr> <td rowspan="2">
         <div id="logodiv">
-          <div id="logo">
-          </div> 
+          <div id="logo"></div>
+
         </div> </td> 
         <td> 
             <%= form_tag(words_find_path, {method: :post}) do  %>
@@ -43,6 +43,13 @@
         </tr>
         </table>
       </div>
+      <td> 
+            <%= form_tag(words_language_path  , method: :get) do  %>
+            <%= select_tag( :language, options_for_select {Inglés Español Francés Alemán Italiano Finés Sueco Rumano Portugués}, {multiple: true}) %>
+            <br>
+            <%= submit_tag('Buscar')%>
+              <% end %>
+         </td>
   </div>
 
   <% flash.each do |name, msg| %>
