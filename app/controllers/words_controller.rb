@@ -1,16 +1,16 @@
 class WordsController < ApplicationController
-	  before_filter :authenticate_user!, except: [:index]
+	  before_filter :authenticate_user!, except: [:index, :find_words]
 		  add_breadcrumb "home", :root_path
   	def find_words
   		@words= Word.all
-		@words_found = @words.where "name LIKE ?", "%#{params[:name]}%"
-		unless @words_found.empty? 
-		#título parecido al introducido
-			render 'find_words'
+		@words_found = @words.where "name LIKE ?", "%#{params[:name].capitalize}%"
+		if @words_found.empty?
+			flash[:alert] = 'We could not find it all...'
+			@alphabet = ("a".."z").to_a
+			redirect_to words_path
+			
 		else 
-		flash[:alert] = 'We could not find it all...?'
-		@alphabet = ("a".."z").to_a
-			render 'index'
+			render 'find_words'
 		end	
 	end
 
@@ -21,9 +21,7 @@ class WordsController < ApplicationController
 		@words_id = @words.map(&:id)
 		gon.words_id= @words_id
 		@alphabet = ("a".."z").to_a
-
-
-		add_breadcrumb "words", words_path
+	add_breadcrumb "words", words_path
 	end
 
 	def new

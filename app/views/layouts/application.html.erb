@@ -29,8 +29,8 @@
           </div> 
         </div> </td> 
         <td> 
-            <%= form_tag({controller: 'words', action: 'find_words'}, {method: :post}) do %>
-                <%= text_area_tag(:name,'', placeholder: 'Buscar Palabra',size: '24*6')  %>
+            <%= form_tag(words_find_path, {method: :post}) do  %>
+                <%= text_area_tag(:name,'', placeholder: 'Buscar Palabra', size: '24*6')  %>
                 <%= submit_tag('Submit')%>
               <% end %>
          </td>
