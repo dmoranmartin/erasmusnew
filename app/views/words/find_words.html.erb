@@ -1,0 +1,11 @@
+<div class="">
+	<div class="">
+		<div class="">
+			<ul>
+			<% @words_found.each do |word| %>
+				<li><%= (link_to word.name, word_definitions_path(word.id)) %></li>
+			<% end %>
+			</ul>
+		</div>
+	</div>		
+</div>	

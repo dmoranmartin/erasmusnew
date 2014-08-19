@@ -1,0 +1,25 @@
+<div id="content">
+	<div id="backbox">
+		<table id="abc"> <tbody>
+			<% @alphabet.each do |letter|  %>
+				<tr> <td id="abctd"><button class = 'letter'> <%= letter %></button> </td> </tr>
+			<% end %>
+		</tbody> </table>
+		
+		<div id="dick">
+			<h1 id="term"> <%= @word.name %></h1>
+				
+			<ul>
+			<% @definitions.each do |definition| %>
+				<li id="origin"><%= definition.origin %></li>
+				<li id="def"><%= definition.text %></li>
+				<br> <h3> Usos: </h3>
+				<li id="example"><%= definition.example %></li>
+				<%= link_to('Editar definición', edit_word_definition_path(id:definition.id)) %>
+				<%= link_to('Eliminar definición', word_definition_path(id:definition.id), :method => :delete) %>
+
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
