@@ -36,3 +36,4 @@ gem "breadcrumbs_on_rails"
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'gon', '~> 5.1.2'
+gem "select2-rails"

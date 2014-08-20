@@ -2,13 +2,11 @@ class WordsController < ApplicationController
 	  before_filter :authenticate_user!, except: [:index, :starts, :find_words, :find_language]
 		  add_breadcrumb "home", :root_path
 	def starts
-		@words_all = Word.all
-		@words_letter = @words_all.where('name LIKE?', "#{params[:letter]}%")
+		@words_letter = Word.where('name LIKE?', "#{params[:letter]}%")
 	end
 
   	def find_words
-  		@words= Word.all
-		@words_found = @words.where "name LIKE ?", "%#{params[:name].downcase}%"
+		@words_found = Word.where "name LIKE ?", "%#{params[:name].downcase}%"
 		if @words_found.empty?
 			flash[:alert] = 'We could not find it all...'
 			@alphabet = ("a".."z").to_a
@@ -20,8 +18,7 @@ class WordsController < ApplicationController
 	end
 
 	def find_language
-  		@words= Word.all
-		@words_language = @words.where "language LIKE ?", "%#{params[:language]}%"
+		@words_language = Word.where "language LIKE ?", "%#{params[:language]}%"
 		if @words_language.empty?
 			flash[:alert] = 'We could not find it all...'
 			@alphabet = ("a".."z").to_a
@@ -36,7 +33,6 @@ class WordsController < ApplicationController
 		@words = Word.order(name: :asc)
 		@words_name = @words.map(&:name)
 
-		@words_id = @words.map(&:id)
 	
 		@alphabet = ("a".."z").to_a
 	add_breadcrumb "words", words_path
@@ -52,7 +48,7 @@ class WordsController < ApplicationController
 		@word = Word.new entry_params
 		@word.name = params[:word][:name].downcase
 		if @word.save
-			redirect_to action: 'index', controller:'words'
+			redirect_to @word
 		else
 			flash[:alert] = 'Something failed'
 			render 'new'

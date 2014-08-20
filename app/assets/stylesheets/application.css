@@ -12,7 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require select2-bootstrap
  */
+
+
 @font-face {
     font-family: 'franklin_gothic_fsbook';
     src: url('FranklinGothic-Book-webfont.eot');

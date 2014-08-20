@@ -10,9 +10,9 @@
 			<% end %>
 		</tbody> </table>
 		
-		<div>
-			<% @words_name.each do |name|%>
-			<%= name %> 
+		<div class='abc'>
+			<% @words.each do |word|%>
+			<%= word.name %> 
 			<%= link_to('editar término', edit_word_path(word.id)) %>
 			<%= link_to('eliminar término',word_path(word.id), :method => :delete) %>
 			<br>
