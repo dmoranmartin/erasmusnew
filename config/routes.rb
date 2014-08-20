@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   post 'words/find' => 'words#find_words'
   get 'words/language' => 'words#find_language'
   devise_for :users
+
   resources :words do
+    collection do 
+      get 'starts/:letter', to: 'words#starts', as: :starts
+    end
     resources :definitions
+  
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

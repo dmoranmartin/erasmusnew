@@ -4,32 +4,19 @@
 		
 		<table id="abc"> <tbody>
 			<% @alphabet.each do |letter|  %>
-				<tr> <td id="abctd"><button class = 'letter'> <%= letter %></button> </td> </tr>
+				<tr> <td id="abctd">
+				<%= link_to(letter, starts_words_path(letter)) %> 
+				</td> </tr>
 			<% end %>
 		</tbody> </table>
 		
-		<div id="dick">
-			<h1 id="term"> TÉRMINOS</h1>
-			<div id = 'alph'>  </div>
-			<ul class="words_list">
-				<% @words.each do |word| %>
-
-				<li id="term"><%= link_to( word.name, word_definitions_path(word.id)) %></li>
-				<%= link_to('editar término', edit_word_path(word.id)) %>
-				<%= link_to('eliminar término',word_path(word.id), :method => :delete) %>
-
-
-				<% end %>
-				</ul>
+		<div>
+			<% @words_name.each do |name|%>
+			<%= name %> 
+			<%= link_to('editar término', edit_word_path(word.id)) %>
+			<%= link_to('eliminar término',word_path(word.id), :method => :delete) %>
+			<br>
+			<% end %>
 		</div>
-	</div>
+	
 </div>
-
-	
-	
-
-
-
-
-
-

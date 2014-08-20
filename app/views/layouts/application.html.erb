@@ -45,7 +45,7 @@
       </div>
       <td> 
             <%= form_tag(words_language_path  , method: :get) do  %>
-            <%= select_tag( :language, options_for_select {Inglés Español Francés Alemán Italiano Finés Sueco Rumano Portugués}, {multiple: true}) %>
+            <%= select_tag "language", "<option>Inglés</option><option>Español</option><option>Francés</option><option>Alemán</option><option>Italiano</option><option>Finés</option><option>Sueco</option><option>Rumano</option><option>Portugués</option>".html_safe %>
             <br>
             <%= submit_tag('Buscar')%>
               <% end %>

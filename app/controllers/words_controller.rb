@@ -1,6 +1,11 @@
 class WordsController < ApplicationController
-	  before_filter :authenticate_user!, except: [:index, :find_words]
+	  before_filter :authenticate_user!, except: [:index, :starts, :find_words, :find_language]
 		  add_breadcrumb "home", :root_path
+	def starts
+		@words_all = Word.all
+		@words_letter = @words_all.where('name LIKE?', "#{params[:letter]}%")
+	end
+
   	def find_words
   		@words= Word.all
 		@words_found = @words.where "name LIKE ?", "%#{params[:name].downcase}%"
@@ -30,9 +35,9 @@ class WordsController < ApplicationController
 	def index
 		@words = Word.order(name: :asc)
 		@words_name = @words.map(&:name)
-		gon.words = @words_name
+
 		@words_id = @words.map(&:id)
-		gon.words_id= @words_id
+	
 		@alphabet = ("a".."z").to_a
 	add_breadcrumb "words", words_path
 	end
